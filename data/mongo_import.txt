@@ -1,0 +1,1 @@
+mongodb://mongo:s1yYuscOhtufU7y9jumA@containers-us-west-126.railway.app:6834/accomodation/?authSource=admin
