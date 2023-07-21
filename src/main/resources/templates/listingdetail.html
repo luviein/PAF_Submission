@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listing Detail</title>
+    <link rel="icon" type="image/x-icon" href="../images/icon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+        
+        th, tr, td{
+            border: thick double black;
+            padding: 1.3rem;
+        }
+    </style>
+</head>
+<body>
+    <a data-th-href="@{/landing}" style="font-size: 1.3rem; margin: 1.5rem;">Back</a>
+    <table style="width:100%" data-th-object="${details}">
+        <tr>
+          <th>Id</th>
+          <td data-th-text="*{id}"></td>
+
+        </tr>
+        <tr>
+          <th>Description</th>
+          <td data-th-text="*{description}">  
+            <p>
+                
+            </p>
+          </td> <td><img height= 300px width = auto data-th-src="*{image}"/></td>
+        </tr>
+        <tr>
+          <th>Address</th>  
+          <td>
+            <p data-th-text="*{addressStreet}"></p>
+            <p data-th-text="*{addressSuburb}"></p>
+            <p data-th-text="*{country}"></p>
+          </td>
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td data-th-text="*{price}"></td>
+  
+          </tr>
+          <tr>
+            <th>Amenities</th>
+            <td data-th-text="*{amenities}"></td>
+          </tr>
+      </table>
+
+      <h1 class="display-3" style="text-align: center; padding-top: 3%;">Bookings</h1>
+      <div class="container" style="padding-top: 3%; padding-bottom: 3%;">
+            <form th:action="@{/landing/search/}" method="get" >
+                <div >
+                    <!-- data-th-unless="${#lists.isEmpty(countries)}" -->
+                    <div class="mb-3" >
+                        <label for="name" class = "form-label">Name </label>
+                        <input type="text" name= "name" class="form-control" placeholder="Your name" required>
+                    </div>
+                </div>
+            
+                <div class="mb-3">
+                    <label for="email" class = "form-label">Email</label>
+                    <input type="email" name="email" class="form-control"placeholder="Your email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="arrival" class = "form-label">Arrival</label><br>
+                    <input type="date" name="minPriceRange" class="form-control" required> 
+                </div>
+                <div class="mb-3" >
+                    <label for="stay" class = "form-label">Stay </label>
+                    <input type="text" name= "stay" class="form-control" required> days
+                </div>
+
+                <div style="margin-left: auto; margin-right: auto;">
+                    <button type="submit" value="Search" class="btn btn-primary" >Search</button>
+                </div>
+            </form>
+        </div>
+</body>
+</html>

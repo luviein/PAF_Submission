@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Result</title>
+    <link rel="icon" type="image/x-icon" href="../images/icon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <style>
+        *{
+            margin-right: auto;
+            margin-left: auto;
+        }
+        h1{
+            text-align: center;
+        }
+        table, tr, td{
+            border: thick double black;
+            padding: 1.3rem;
+        }
+    
+    </style>
+
+</head>
+
+<h1>Listings for <span data-th-text="${country}"></span></h1>
+<a data-th-href="@{/landing}">Back</a>
+
+<body>
+    <table>
+        <tr>
+            <th>Address</th>
+            <th>Price</th>
+            <th>Image</th>
+        </tr>
+        <div th:each="s : ${search}">
+            <tr>
+                <td>
+                    Name: <span th:text="${s.name}"></span><br>
+                </td>
+                
+                <td>Price <span th:text="${s.price}"></span><br></td>
+                
+                <td>
+                    <div class="image">
+                        <img height= 300px width = auto data-th-src="${s.images}"/>
+                    </div>
+                </td>
+                <td>
+                    <form data-th-action="@{/landing/details/{id}(id=${s.id})}" th:object="${s.id}">
+                        <input type="submit" value="Details">
+                    </form>
+                </td>
+                  
+            </tr>
+
+        </div>
+       
+
+
+        
+    </table>
+</body>
+</html>
