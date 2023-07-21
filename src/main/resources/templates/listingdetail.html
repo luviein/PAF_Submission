@@ -51,7 +51,7 @@
 
       <h1 class="display-3" style="text-align: center; padding-top: 3%;">Bookings</h1>
       <div class="container" style="padding-top: 3%; padding-bottom: 3%;" data-th-object="${booking}">
-            <form th:action="@{/landing/search/}" method="get" >
+            <form th:action="@{/landing/post}" method="post" >
                 <div >
                     <!-- data-th-unless="${#lists.isEmpty(countries)}" -->
                     <div class="mb-3" >
@@ -62,15 +62,15 @@
             
                 <div class="mb-3">
                     <label for="email" class = "form-label">Email</label>
-                    <input type="email" name="email" class="form-control"placeholder="Your email" required th:field="*{email} >
+                    <input type="email" name="email" class="form-control"placeholder="Your email" required th:field="*{email}" >
                 </div>
                 <div class="mb-3">
                     <label for="arrival" class = "form-label">Arrival</label><br>
-                    <input type="date" name="minPriceRange" class="form-control" required th:field="*{arrival}> 
+                    <input type="date" name="minPriceRange" class="form-control" required th:field="*{arrival}"> 
                 </div>
                 <div class="mb-3" >
                     <label for="stay" class = "form-label">Stay </label>
-                    <input type="text" name= "stay" class="form-control" required th:field="*{stay}> days
+                    <input type="text" name= "stay" class="form-control" required th:field="*{stay}"> days
                 </div>
 
                 <div style="margin-left: auto; margin-right: auto;">

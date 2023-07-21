@@ -13,7 +13,7 @@ import vttp2023.batch3.assessment.paf.bookings.repositories.ListingsRepository;
 import vttp2023.batch3.assessment.paf.bookings.services.ListingsService;
 
 @SpringBootApplication
-public class BookingsApplication implements CommandLineRunner {
+public class BookingsApplication {
 
 	@Autowired
 	ListingsRepository listingRepo;
@@ -24,13 +24,13 @@ public class BookingsApplication implements CommandLineRunner {
 		SpringApplication.run(BookingsApplication.class, args);
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
-		// List<Document> search = listingRepo.getSearchResults("Australia");
-		// for(Document d : search) {
-		// 	System.out.println(d);
-		// }
+	// @Override
+	// public void run(String... args) throws Exception {
+	// 	// List<Document> search = listingRepo.getSearchResults("Australia");
+	// 	// for(Document d : search) {
+	// 	// 	System.out.println(d);
+	// 	// }
 
-		System.out.println("CMD LINE RUNNER >>>>>>>>>>>>>"+listingSvc.getListingDetails("10108388").get(0));
-	}
+	// 	System.out.println("CMD LINE RUNNER >>>>>>>>>>>>>"+listingSvc.findVacancyById("95560"));
+	// }
 }

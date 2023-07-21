@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -71,11 +73,12 @@ public class ListingsController {
 			ModelAndView mav2 = new ModelAndView("empty");
 			return mav2;
 		}
-		System.out.println("SESSION IN GET SEARCH RESULTS >>>>>>>>"+session.getAttribute("maxPriceRange"));
+		
 		mav.addObject("sessionCountry", session.getAttribute("country"));
 		mav.addObject("sessionMinPrice", session.getAttribute("minPriceRange"));
 		mav.addObject("sessionMaxPrice", session.getAttribute("maxPriceRange"));
-		
+		session.setAttribute("id", id);
+		System.out.println("SESSION IN GET SEARCH RESULTS >>>>>>>>"+session.getAttribute("id").getClass());
 		mav.addObject("details", listingDetails);
 		mav.addObject("booking", new Bookings());
 
@@ -83,5 +86,16 @@ public class ListingsController {
 	}
 
 	// TODO: Task 5
+	@PostMapping(path="/post") 
+	public ModelAndView postBooking(HttpSession session, @RequestBody Bookings bookings) {
+		bookings.setId(Integer.parseInt((String)session.getAttribute("id")));
+		ModelAndView mav = new ModelAndView("redirect:/landing/successfulreservation");
+		mav.addObject("sessionId", session.getAttribute("id"));
+		if(listingSvc.findVacancyById(bookings.getId()) > bookings.getId()) {
+
+		}
+		return mav;
+	}
+
 
 }

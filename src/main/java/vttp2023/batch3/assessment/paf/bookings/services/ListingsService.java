@@ -8,9 +8,11 @@ import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import vttp2023.batch3.assessment.paf.bookings.models.Bookings;
 import vttp2023.batch3.assessment.paf.bookings.models.ListingDetails;
 import vttp2023.batch3.assessment.paf.bookings.models.Listings;
 import vttp2023.batch3.assessment.paf.bookings.repositories.ListingsRepository;
+import vttp2023.batch3.assessment.paf.bookings.repositories.SQLRepository;
 
 
 @Service
@@ -18,6 +20,9 @@ public class ListingsService {
 	
 	@Autowired
 	ListingsRepository listingRepo;
+
+	@Autowired
+	SQLRepository SQLRepo;
 
 	//TODO: Task 2
 	public List<String> getCountry() {
@@ -86,6 +91,11 @@ public class ListingsService {
 	}
 
 	//TODO: Task 5
+	public Integer findVacancyById (Integer id) {
+		return SQLRepo.findVacancyById(id);
+	}
 
-
+	public Boolean insertReservation (Bookings bookings) {
+		return SQLRepo.insertReservation(bookings);
+	}
 }

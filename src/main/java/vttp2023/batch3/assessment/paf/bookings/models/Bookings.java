@@ -3,6 +3,7 @@ package vttp2023.batch3.assessment.paf.bookings.models;
 import java.sql.Date;
 
 public class Bookings {
+    private Integer id;
     private String name;
     private String email;
     private Date arrival;
@@ -31,10 +32,20 @@ public class Bookings {
     public void setStay(Integer stay) {
         this.stay = stay;
     }
+
     @Override
     public String toString() {
-        return "Bookings [name=" + name + ", email=" + email + ", arrival=" + arrival + ", stay=" + stay + "]";
+        return "Bookings [id=" + id + ", name=" + name + ", email=" + email + ", arrival=" + arrival + ", stay=" + stay
+                + "]";
     }
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    
 
     
     
