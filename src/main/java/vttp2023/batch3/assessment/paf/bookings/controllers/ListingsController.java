@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import vttp2023.batch3.assessment.paf.bookings.models.Bookings;
 import vttp2023.batch3.assessment.paf.bookings.models.ListingDetails;
 import vttp2023.batch3.assessment.paf.bookings.models.Listings;
 import vttp2023.batch3.assessment.paf.bookings.services.ListingsService;
@@ -47,6 +48,7 @@ public class ListingsController {
 		}
 		List<Listings> list = listingSvc.getSearchResults(country);
 		// Set session to save search results
+		System.out.println("SESSION IN  GET RESULTS >>>>>>>>"+session.getAttribute("maxPriceRange"));
 		session.setAttribute("country", country);
 		session.setAttribute("minPriceRange", minPriceRange);
 		session.setAttribute("maxPriceRange", maxPriceRange);
@@ -69,12 +71,13 @@ public class ListingsController {
 			ModelAndView mav2 = new ModelAndView("empty");
 			return mav2;
 		}
-		System.out.println("SESSION IN GET SEARCH RESULTS >>>>>>>>"+session.getAttribute("country"));
-		session.getAttribute("country");
-		session.getAttribute("minPriceRange");
-		session.getAttribute("maxPriceRange");
-
+		System.out.println("SESSION IN GET SEARCH RESULTS >>>>>>>>"+session.getAttribute("maxPriceRange"));
+		mav.addObject("sessionCountry", session.getAttribute("country"));
+		mav.addObject("sessionMinPrice", session.getAttribute("minPriceRange"));
+		mav.addObject("sessionMaxPrice", session.getAttribute("maxPriceRange"));
+		
 		mav.addObject("details", listingDetails);
+		mav.addObject("booking", new Bookings());
 
 		return mav;
 	}

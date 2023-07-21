@@ -15,7 +15,7 @@
     </style>
 </head>
 <body>
-    <a data-th-href="@{/landing}" style="font-size: 1.3rem; margin: 1.5rem;">Back</a>
+    <a data-th-href="@{/landing/search/(country=${sessionCountry}, minPriceRange=${sessionMinPrice}, maxPriceRange=${sessionMaxPrice})}" style="font-size: 1.3rem; margin: 1.5rem;">Back</a>
     <table style="width:100%" data-th-object="${details}">
         <tr>
           <th>Id</th>
@@ -50,27 +50,27 @@
       </table>
 
       <h1 class="display-3" style="text-align: center; padding-top: 3%;">Bookings</h1>
-      <div class="container" style="padding-top: 3%; padding-bottom: 3%;">
+      <div class="container" style="padding-top: 3%; padding-bottom: 3%;" data-th-object="${booking}">
             <form th:action="@{/landing/search/}" method="get" >
                 <div >
                     <!-- data-th-unless="${#lists.isEmpty(countries)}" -->
                     <div class="mb-3" >
                         <label for="name" class = "form-label">Name </label>
-                        <input type="text" name= "name" class="form-control" placeholder="Your name" required>
+                        <input type="text" name= "name" class="form-control" placeholder="Your name" required th:field="*{name}">
                     </div>
                 </div>
             
                 <div class="mb-3">
                     <label for="email" class = "form-label">Email</label>
-                    <input type="email" name="email" class="form-control"placeholder="Your email" required>
+                    <input type="email" name="email" class="form-control"placeholder="Your email" required th:field="*{email} >
                 </div>
                 <div class="mb-3">
                     <label for="arrival" class = "form-label">Arrival</label><br>
-                    <input type="date" name="minPriceRange" class="form-control" required> 
+                    <input type="date" name="minPriceRange" class="form-control" required th:field="*{arrival}> 
                 </div>
                 <div class="mb-3" >
                     <label for="stay" class = "form-label">Stay </label>
-                    <input type="text" name= "stay" class="form-control" required> days
+                    <input type="text" name= "stay" class="form-control" required th:field="*{stay}> days
                 </div>
 
                 <div style="margin-left: auto; margin-right: auto;">
